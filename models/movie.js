@@ -43,6 +43,17 @@ var movieSchema = new mongoose.Schema({
   }
 });
 
+//before saving, console.log ('saving movie');
+movieSchema.pre('save', function(next){
+  console.log('saving movie');
+  return next();
+});
+
+//after saving, console.log('movie saved');
+movieSchema.post('save', function(){
+  console.log('movie saved');
+});
+
 //register the getter and virtuals modifier
 movieSchema.set('toJSON', { getters: true, virtuals: true});
 
